@@ -13,7 +13,7 @@ Light::~Light()
 
 void Light::setLightDir(glm::vec3 _vertex)
 {
-	lightDir = lightPos - _vertex; //light direction is lightposition - vertex
+	lightDir = lightPos - _vertex; //light direction vector is lightposition - vertex
 	lightDir = lmodelMatrix * glm::vec4(lightDir, 1); //convert lightDirection into world coordinates
 	lightDir = glm::normalize(lightDir); //normalize lightDirection because we need only its direction
 }

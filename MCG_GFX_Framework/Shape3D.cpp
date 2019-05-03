@@ -6,9 +6,23 @@ Shape3D::Shape3D()
 {
 }
 
+Shape3D::Shape3D(glm::vec3 _color)
+{
+	color = _color;
+}
+
 
 Shape3D::~Shape3D()
 {
+}
+
+glm::vec3 Shape3D::getColor()
+{
+	return color;
+}
+void Shape3D::setColor(glm::vec3 _color)
+{
+	color = _color;
 }
 
 std::vector<triangle> Shape3D::getMesh() const
@@ -19,6 +33,7 @@ void Shape3D::setMesh(std::vector<triangle> _mesh)
 {
 	mesh = _mesh;
 }
+
 
 glm::mat4x4 Shape3D::getModelMatrix() const
 {

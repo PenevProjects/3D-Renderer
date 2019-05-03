@@ -67,7 +67,7 @@ void Renderer::RenderShape(Shape3D* _shape)
 		triProjected.p[1] = glm::project(triRotatedZX.p[1], _shape->getModelMatrix() * viewMatrix, projMat, viewport);
 		triProjected.p[2] = glm::project(triRotatedZX.p[2], _shape->getModelMatrix() * viewMatrix, projMat, viewport);
 
-		//find projection normal to use in calculation of which squares we can see(by dotting the normal and the camera vector)
+		//find projection normals to use in backface culling
 		glm::vec3 projNormal, projSide1, projSide2;
 		projSide1 = triProjected.p[1] - triProjected.p[0];
 		projSide2 = triProjected.p[2] - triProjected.p[0];
@@ -82,6 +82,6 @@ void Renderer::RenderShape(Shape3D* _shape)
 				triProjected.p[0],
 				triProjected.p[1],
 				triProjected.p[2],
-				glm::vec3(255, 135, 185) * _light.getLum());
+				_shape->getColor() * _light.getLum());
 	}
 }

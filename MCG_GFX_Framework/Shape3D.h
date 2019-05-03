@@ -8,6 +8,7 @@ class Shape3D :
 	public TriangleClass
 {
 private:
+	glm::vec3 color;
 	//mesh vector
 	std::vector<triangle> mesh;
 
@@ -22,9 +23,13 @@ private:
 
 public:
 	Shape3D();
+	Shape3D(glm::vec3 _color);
 	~Shape3D();
 	std::vector<triangle> getMesh() const;
 	void setMesh(std::vector<triangle> _mesh);
+
+	glm::vec3 getColor();
+	void setColor(glm::vec3);
 
 	glm::mat4x4 getModelMatrix() const;
 	void setModelMatrix(glm::mat4x4 _matrix);
