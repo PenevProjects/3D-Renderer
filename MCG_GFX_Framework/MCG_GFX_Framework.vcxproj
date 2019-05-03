@@ -148,15 +148,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Shape3D.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MCG_GFX_Lib.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Shape2D.cpp" />
+    <ClCompile Include="TriangleClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Shape3D.h" />
     <ClInclude Include="MCG_GFX_Lib.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="Square.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Shape2D.h" />
+    <ClInclude Include="TriangleClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

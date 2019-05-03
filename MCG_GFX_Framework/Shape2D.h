@@ -1,14 +1,14 @@
 #include <vector>
 #include "MCG_GFX_Lib.h"
 #pragma once
-class Shape
+class Shape2D
 {
 private:
-	std::vector<glm::vec2> Position;
+	std::vector<glm::vec2> PositionVec;
 public:
-	Shape();
-	Shape(const Shape& t);
-	virtual ~Shape();
+	Shape2D();
+	Shape2D(const Shape2D& t);
+	virtual ~Shape2D();
 
 	void pushbackPosition(int x, int y);
 
