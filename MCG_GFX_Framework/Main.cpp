@@ -5,13 +5,13 @@
 This is a 3D rendering program created for my unit Mathematics for Computer Graphics.
 It utilizes the MCG GFX Framework.
 
-All colors and shape vertices are example values, 
+All colors and coordinates are example values, 
 as the point of this program is to showcase the algorithms.
 */
 
 int main(int argc, char *argv[])
 {
-	glm::ivec2 windowSize{ 640,480 };
+	glm::ivec2 windowSize{ 640,480 }; //width and height of rendering window
 	Menu menu(windowSize);
 	menu.Run();
 	return 0;
