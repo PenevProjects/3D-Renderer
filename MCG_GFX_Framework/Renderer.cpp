@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
-Renderer::Renderer()
+Renderer::Renderer(glm::ivec2 _wSize) 
+	: windowSize(_wSize)
 {
 }
 

@@ -2,7 +2,8 @@
 
 
 
-Menu::Menu()
+Menu::Menu(glm::ivec2 _wSize) 
+	: windowSize(_wSize)
 {
 }
 
@@ -204,8 +205,7 @@ int Menu::Selection(int min, int max)
 void Menu::Render(glm::ivec2 _wSize, Shape3D _shape)
 {
 	float dt = 0.0f;
-	Renderer renderer;
-	renderer.setWindowSize(_wSize);
+	Renderer renderer(windowSize);
 	while (MCG::ProcessFrame())
 	{
 		MCG::SetBackground(glm::ivec3(0, 0, 0));
@@ -213,22 +213,5 @@ void Menu::Render(glm::ivec2 _wSize, Shape3D _shape)
 		_shape.setRotationX(dt);
 		_shape.setRotationZ(dt);
 		renderer.RenderShape(&_shape);
-
-
-		//for (std::size_t i = 1; i < Circle->getPositionVector().size(); i++)
-		//{
-		//	MCG::DrawPixel(Circle->getPosition(int(i)), pixelColour);
-		//}
-
-		//for (std::size_t i = 0; i < Circle->getPositionVector().size(); i++)
-		//{
-		//	Circle->getPosition(int(i)) = Circle->getPosition(int(i)) * matx;
-		//}
-
-		/*MCG::DrawPixel(example.getPosition(int(timer*60.0f)), pixelColour);*/
-		/*MCG::DrawPixel( pixelPosition, pixelColour );*/
-
 	}
 }
-
-

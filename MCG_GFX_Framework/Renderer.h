@@ -15,7 +15,7 @@
 class Renderer
 {
 private:
-	glm::ivec2 windowSize = { 640,480 };
+	glm::ivec2 windowSize;
 	float zNear = 0.1f; //nearest point on Z-plane
 	float zFar = 100.0f; // furthest point on Z-plane
 	float FOV = 90.0f * PI / 180.0f; // FOV in radians
@@ -29,7 +29,7 @@ private:
 	glm::mat4x4 viewMatrix = glm::lookAt(camera, { 0.0f, 0.0f, 0.0f }, { 0.0f, -1.0f, 0.0f }); //viewing matrix
 	glm::vec4 viewport = { 0, 0, windowSize.x, windowSize.y }; //viewport
 public:
-	Renderer();
+	Renderer(glm::ivec2 _wSize);
 	~Renderer();
 	void setWindowSize(glm::ivec2 _wSize);
 	glm::ivec2 getWindowSize() const;

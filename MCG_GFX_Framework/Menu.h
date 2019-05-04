@@ -18,9 +18,9 @@
 class Menu
 {
 private:
-	glm::ivec2 windowSize{ 640,480 };
+	glm::ivec2 windowSize;
 public:
-	Menu();
+	Menu(glm::ivec2 _wSize);
 	~Menu();
 	void Run();
 	void Render(glm::ivec2 _wSize, Shape3D cube3D);

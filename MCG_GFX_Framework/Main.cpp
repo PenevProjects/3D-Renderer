@@ -11,14 +11,9 @@ as the point of this program is to showcase the algorithms.
 
 int main(int argc, char *argv[])
 {
-	Menu* menu = new Menu;
-	if (menu == nullptr)
-	{
-		std::cout << "Error initializing menu object";
-	}
-	else
-		menu->Run();
-	delete menu;
+	glm::ivec2 windowSize{ 640,480 };
+	Menu menu(windowSize);
+	menu.Run();
 	return 0;
 }
 
