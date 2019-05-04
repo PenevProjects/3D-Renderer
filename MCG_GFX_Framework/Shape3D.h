@@ -19,16 +19,16 @@ private:
 		1.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 1.0f, 5.0f,
-		0.0f, 0.0f, 0.0f, 1.0f }; //modelling matrix for the triangles in mesh (initialized with default values for renderer)
+		0.0f, 0.0f, 0.0f, 1.0f }; //modelling matrix for the triangles in mesh (initialized here with example values)
 
 public:
-	Shape3D();
 	Shape3D(glm::vec3 _color);
+	Shape3D(const Shape3D& _copy);
 	~Shape3D();
 	std::vector<triangle> getMesh() const;
 	void setMesh(std::vector<triangle> _mesh);
 
-	glm::vec3 getColor();
+	glm::vec3 getColor() const;
 	void setColor(glm::vec3);
 
 	glm::mat4x4 getModelMatrix() const;

@@ -2,7 +2,10 @@
 
 
 
-Shape3D::Shape3D()
+Shape3D::Shape3D(const Shape3D& _copy) 
+	: color(_copy.getColor()),
+	triModelMatrix(_copy.getModelMatrix()),
+	mesh(_copy.getMesh())
 {
 }
 
@@ -16,7 +19,7 @@ Shape3D::~Shape3D()
 {
 }
 
-glm::vec3 Shape3D::getColor()
+glm::vec3 Shape3D::getColor() const
 {
 	return color;
 }

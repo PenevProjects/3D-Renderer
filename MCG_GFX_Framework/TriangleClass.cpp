@@ -39,7 +39,7 @@ void TriangleClass::Line(glm::ivec2 _a, glm::ivec2 _b, glm::vec3 color) //utiliz
 
 	if (dx > dy)
 	{
-		int fraction = (dy * 2) - dx; // see references for proof of initial fraction value
+		int fraction = (dy * 2) - dx; // see reference[1] for proof of initial fraction value
 		while (_a.x != _b.x) // while y0 is different than y1
 		{
 			MCG::DrawPixel(glm::vec2(_a.x, _a.y), color);

@@ -33,6 +33,6 @@ public:
 	~Renderer();
 	void setWindowSize(glm::ivec2 _wSize);
 	glm::ivec2 getWindowSize() const;
-	void RenderShape(Shape3D* _shape); // Shape to render, deltaTime for rotation
+	void RenderShape(Shape3D* _shape);
 };
 

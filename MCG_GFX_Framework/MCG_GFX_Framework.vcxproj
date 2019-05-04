@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Shape3D.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MCG_GFX_Lib.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Light.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Shape3D.h" />
     <ClInclude Include="MCG_GFX_Lib.h" />
     <ClInclude Include="Renderer.h" />
