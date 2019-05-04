@@ -20,125 +20,156 @@ void Menu::Run()
 		std::cout << "Select shape: \n1. 3D Cube \n2. Triangle \n3. Square \n4. Circle \n5. Line \n6. Exit \n";
 		switch (Selection(0, 6))
 		{
-		case 1: //3d renderer
-		{
-			Initialize(windowSize);
-			Shape3D cube3D({ 0,212,255 });
-			std::vector<triangle> cubeMesh = {
-				//mesh of a cube, triangles always drawn in clockwise direction to make sure normals point outwards
-				//south
-				{glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 0.0f)},
-				{glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 0.0f, 0.0f)},
-
-				//east
-				{glm::vec3(1.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 1.0f)},
-				{glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec3(1.0f, 1.0f, 1.0f),   glm::vec3(1.0f, 0.0f, 1.0f)},
-
-				//north
-				{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(1.0f, 1.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 1.0f)},
-				{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 1.0f, 1.0f),  glm::vec3(0.0f, 0.0f, 1.0f)},
-
-				//west
-				{glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 0.0f)},
-				{glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(0.0f, 0.0f, 0.0f)},
-
-				//top
-				{glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(0.0f, 1.0f, 1.0f),   glm::vec3(1.0f, 1.0f, 1.0f)},
-				{glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 1.0f),  glm::vec3(1.0f, 1.0f, 0.0f)},
-
-				//bottom
-				{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, 0.0f, 0.0f)},
-				{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 0.0f, 0.0f)},
-			};
-			cube3D.setMesh(cubeMesh);
-			//cube3D.setModelMatrix();  //use this if you want to set a different model matrix
-			Render(windowSize, cube3D);
-			MCG::Cleanup();
-			break;
-		}
-		case 2: //triangle
-		{
-			TriangleClass tri;
-			std::cout << "Select option: \n1. Filled \n2. Outline \n";
-			switch (Selection(0, 2))
+			case 1: //3d renderer
 			{
-			case 1:
 				Initialize(windowSize);
-				tri.FillTriangle({ 150, 100 }, { 400, 210 }, { 300, 380 }, { 0, 131, 255 }); //example coordinates, can be changed freely
-				break;
-			case 2:
-				Initialize(windowSize);
-				tri.DrawTriangle({ 260, 120 }, { 180, 300 }, { 430, 160 }, { 76,255,0 }); //example coordinates, can be changed freely
+				Shape3D cube3D({ 0,212,255 });
+				std::vector<triangle> cubeMesh = {
+					//mesh of a cube, triangles always drawn in clockwise direction to make sure normals point outwards
+					//south
+					{glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 0.0f)},
+					{glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 0.0f, 0.0f)},
+
+					//east
+					{glm::vec3(1.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 1.0f)},
+					{glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec3(1.0f, 1.0f, 1.0f),   glm::vec3(1.0f, 0.0f, 1.0f)},
+
+					//north
+					{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(1.0f, 1.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 1.0f)},
+					{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 1.0f, 1.0f),  glm::vec3(0.0f, 0.0f, 1.0f)},
+
+					//west
+					{glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 0.0f)},
+					{glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(0.0f, 0.0f, 0.0f)},
+
+					//top
+					{glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(0.0f, 1.0f, 1.0f),   glm::vec3(1.0f, 1.0f, 1.0f)},
+					{glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec3(1.0f, 1.0f, 1.0f),  glm::vec3(1.0f, 1.0f, 0.0f)},
+
+					//bottom
+					{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, 0.0f, 0.0f)},
+					{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 0.0f, 0.0f)},
+				};
+				cube3D.setMesh(cubeMesh);
+				//cube3D.setModelMatrix();  //use this if you want to set a different model matrix
+				Render(windowSize, cube3D);
+				MCG::Cleanup();
 				break;
 			}
-			MCG::ShowAndHold();
-			MCG::Cleanup();
-			break;
-		}
-		case 3: //square
-		{
-			Shape2D square({ 255,0,65 });
-			std::cout << "Select option: \n1. Gradient filled \n2. Monotone filled \n3. Outline \n";
-			switch (Selection(0, 3))
+			case 2: //triangle
 			{
-			case 1:
-				Initialize(windowSize);
-				square.DrawSquareGradient(square.getColor(), { 0, 119, 255 }, 200);
-				break;
-			case 2:
-				Initialize(windowSize);
-				square.DrawSquareFilled(square.getColor(), 200);
-				break;
-			case 3:
-				Initialize(windowSize);
-				square.DrawSquareOutline(square.getColor(), { 100, 100 }, { 300, 300 });
+				TriangleClass tri;
+				std::cout << "Select option: \n1. Filled \n2. Outline \n";
+				switch (Selection(0, 2))
+				{
+					case 1:
+					{
+						Initialize(windowSize);
+						tri.FillTriangle({ 150, 100 }, { 400, 210 }, { 300, 380 }, { 0, 131, 255 }); //example coordinates, can be changed freely
+						break;
+					}
+					case 2:
+					{
+						Initialize(windowSize);
+						tri.DrawTriangle({ 260, 120 }, { 180, 300 }, { 430, 160 }, { 76,255,0 }); //example coordinates, can be changed freely
+						break;
+					}
+				}
+				MCG::ShowAndHold();
+				MCG::Cleanup();
 				break;
 			}
-			MCG::ShowAndHold();
-			MCG::Cleanup();
-			break;
-		}
-		case 4: //circle
-		{
-			Shape2D circle({ 255,0,65 });
-			std::cout << "Select option: \n1. Gradient filled(with 3.'s method) \n2. Monotone filled by lines running from origin to endpoint \n3. Monotone filled by drawing a lot of outlined circles\n4. Outline \n";
-			switch (Selection(0, 4))
+			case 3: //square
 			{
-			case 1:
-				Initialize(windowSize);
-				circle.DrawCircleGradient({ 320,240 }, 100, { 255, 255, 0 }, { 255,80,0 });
-				break;
-			case 2:
-				Initialize(windowSize);
-				circle.DrawCircleFilledBres({ 320,240 }, 100, { 0,255,255 });
-				break;
-			case 3:
-				Initialize(windowSize);
-				circle.DrawCircleFilledLoop({ 320,240 }, 100, { 0,255,255 });
-				break;
-			case 4:
-				Initialize(windowSize);
-				circle.DrawCircleOutline({ 320,240 }, 100, { 0,255,255 });
+				Shape2D square({ 255,0,65 });
+				std::cout << "Select option: \n1. Gradient filled \n2. Monotone filled \n3. Outline \n";
+				switch (Selection(0, 3))
+				{
+					case 1:
+					{
+						Initialize(windowSize);
+						square.DrawSquareGradient(square.getColor(), { 0, 119, 255 }, 200);
+						break;
+					}
+					case 2:
+					{
+						Initialize(windowSize);
+						square.DrawSquareFilled(square.getColor(), 200);
+						break;
+					}
+					case 3:
+					{
+						Initialize(windowSize);
+						square.DrawSquareOutline(square.getColor(), { 100, 100 }, { 300, 300 });
+						break;
+					}
+				}
+				MCG::ShowAndHold();
+				MCG::Cleanup();
 				break;
 			}
-			MCG::ShowAndHold();
-			MCG::Cleanup();
-			break;
-		}
-		case 5: //line
-		{
-			TriangleClass oneline; //ha!
-			Initialize(windowSize);
-			oneline.Line({ 120, 400 }, { 380, 120 }, { 0,150,250 });
-			MCG::ShowAndHold();
-			MCG::Cleanup();
-			break;
-		}
-		case 6: //exit
-		{
-			exitFlag = true;
-			break;
-		}
+			case 4: //circle
+			{
+				Shape2D circle({ 255,0,65 });
+				std::cout << "Select option: \n1. Gradient filled (with 2.'s method) \n2. Monotone filled (bresenham, outline circles loop) \n3. Monotone filled (bresenham, lines from origin to endpoint) \n4. Monotone filled (unit circle, outline circles loop) \n5. Outline (bresenham mid-point left, unit circle right) ";
+				switch (Selection(0, 5))
+				{
+					case 1:
+					{
+						Initialize(windowSize);
+						circle.DrawCircleGradient({ 320,240 }, 100, { 255, 255, 0 }, { 255,80,0 });
+						break;
+					}
+					case 2:
+					{
+						Initialize(windowSize);
+						circle.DrawCircleFilledLoop({ 320,240 }, 100, { 35,255,200 });
+						break;
+					}
+					case 3:
+					{
+						Initialize(windowSize);
+						circle.DrawCircleFilledBres({ 320,240 }, 100, { 35,255,200 });
+						break;
+					}
+					case 4:
+					{
+						//cos and sin operations, slow
+						Initialize(windowSize);
+						glm::vec2 pixelPos;
+						for (int i = 100; i > 0; i--)
+						{
+							circle.DrawCircleUnit({ 320, 240 }, i, { 0,255,255 });
+						}
+						break;
+					}
+					case 5:
+					{
+						//showcasing the inaccuracies in unit circle algorithm
+						Initialize(windowSize);
+						circle.DrawCircleOutline({ 200,240 }, 100, { 0,255,0 });
+						circle.DrawCircleUnit({ 440, 240 }, 100, { 255,0,0 });
+						break;
+					}
+				}
+				MCG::ShowAndHold();
+				MCG::Cleanup();
+				break;
+			}
+			case 5: //line
+			{
+				TriangleClass oneline; //ha!
+				Initialize(windowSize);
+				oneline.Line({ 120, 400 }, { 380, 120 }, { 0,150,250 });
+				MCG::ShowAndHold();
+				MCG::Cleanup();
+				break;
+			}
+			case 6: //exit
+			{
+				exitFlag = true;
+				break;
+			}
 		}
 	}
 	MCG::Cleanup();

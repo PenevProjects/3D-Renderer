@@ -167,3 +167,13 @@ void Shape2D::DrawCircleGradient(glm::vec2 _center, int r, glm::vec3 _c1, glm::v
 		DrawCircleOutline(_center, stepX, result);
 	}
 }
+void Shape2D::DrawCircleUnit(glm::vec2 _center, int _r, glm::vec3 _color)
+{
+	glm::vec2 pixel;
+	for (float rad = 0.0f; rad < 2 * PI; rad += 0.01f)
+	{
+		pixel.x = _center.x + (_r * (cosf(rad)));
+		pixel.y = _center.y + (_r * (sinf(rad)));
+		MCG::DrawPixel(pixel, _color);
+	}
+}
