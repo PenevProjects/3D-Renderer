@@ -53,6 +53,7 @@ void Shape2D::DrawSquareGradient(glm::vec3 _c1, glm::vec3 _c2, int _len)
 	{
 		for (int stepX = 10; stepX < _len; ++stepX)
 		{
+			//linear interpolation
 			result.x = (_c2.x - _c1.x) * stepX / _len + _c1.x;
 			result.y = (_c2.y - _c1.y) * stepX / _len + _c1.y;
 			result.z = (_c2.z - _c1.z) * stepX / _len + _c1.z;
@@ -144,10 +145,6 @@ void Shape2D::DrawCircleFilledBres(glm::vec2 _center, int r, glm::vec3 _color)
 		Line(_center, { _center.x + y, _center.y - x }, _color);
 		Line(_center, { _center.x - y, _center.y - x }, _color);
 	}
-	//for (;r > 0; r--)
-	//{
-	//	DrawCircleOutline(_center, r, _color);
-	//}
 }
 void Shape2D::DrawCircleFilledLoop(glm::vec2 _center, int r, glm::vec3 _color)
 {
@@ -161,7 +158,8 @@ void Shape2D::DrawCircleGradient(glm::vec2 _center, int r, glm::vec3 _c1, glm::v
 	glm::vec3 result;
 	for (int stepX = 1; stepX < r; stepX++)
 	{
-		result.x = (_c2.x - _c1.x) * stepX / r + _c1.x;
+		//linear interpolation
+		result.x = (_c2.x - _c1.x) * stepX / r + _c1.x; 
 		result.y = (_c2.y - _c1.y) * stepX / r + _c1.y;
 		result.z = (_c2.z - _c1.z) * stepX / r + _c1.z;
 		DrawCircleOutline(_center, stepX, result);
