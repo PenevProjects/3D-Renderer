@@ -11,7 +11,7 @@ class Shape2D
 {
 private:
 	glm::vec3 color;
-	std::vector<glm::vec2> PositionVec;
+	std::vector<glm::vec2> PositionVec; //can be used if you want to store the shape into a vector, useful for brute-forcing custom shapes, however slow and resource-heavy
 public:
 	Shape2D(glm::vec3 _color);
 	Shape2D(const Shape2D& _copy);
@@ -26,14 +26,16 @@ public:
 	std::vector<glm::vec2> getPositionVector() const;
 	glm::vec2& getPositionAt(int i);
 
-	void DrawSquareOutline(glm::vec3 _color, glm::ivec2 topLeft, glm::ivec2 botRight);
-	void DrawSquareFilled(glm::vec3 _color, int _len);
-	void DrawSquareGradient(glm::vec3 _c1, glm::vec3 _c2, int _len);
+	void DrawBezierCurve(glm::vec2 _p1, glm::vec2 _p2, glm::vec2 _c1, glm::vec2 _c2);
 
-	void DrawCircleUnit(glm::vec2 _center, int _r, glm::vec3 _color); //unit circle drawing algorithm, inaccurate, slow and wastes a lot of resources(cos and sin calculations)
-	void DrawCircleOutline(glm::vec2 _center, int r, glm::vec3 _color); //bresenham midpoint circle drawing algorithm, faster and more accurate
-	void DrawCircleFilledBres(glm::vec2 _center, int r, glm::vec3 _color); //drawing filled circle by running lines from origin to endpoint, inaccuracies... to be worked on
-	void DrawCircleFilledLoop(glm::vec2 _center, int r, glm::vec3 _color); //drawing filled circle by drawing many outline circles, inaccuracies... to be worked on
+	void DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2);
+	void DrawSquareFilled(int _len);
+	void DrawSquareOutline(glm::ivec2 topLeft, glm::ivec2 botRight);
+
+	void DrawCircleUnit(glm::vec2 _center, int _r); //unit circle drawing algorithm, inaccurate, slow and wastes a lot of resources(cos and sin calculations)
+	void DrawCircleOutline(glm::vec2 _center, int r); //bresenham midpoint circle drawing algorithm, faster and more accurate
+	void DrawCircleFilledBres(glm::vec2 _center, int r); //drawing filled circle by running lines from origin to endpoint, inaccuracies... to be worked on
+	void DrawCircleFilledLoop(glm::vec2 _center, int r); //drawing filled circle by drawing many outline circles, inaccuracies... to be worked on
 	void DrawCircleGradient(glm::vec2 _center, int r, glm::vec3 _c1, glm::vec3 _c2); //color interpolation algorithm + DrawCircleFilledLoop()
 };
 

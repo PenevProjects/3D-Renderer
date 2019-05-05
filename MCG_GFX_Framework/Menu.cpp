@@ -18,7 +18,7 @@ void Menu::Run()
 	bool exitFlag = false;
 	while (exitFlag == false)
 	{
-		std::cout << "Select shape: \n1. 3D Cube \n2. Triangle \n3. Square \n4. Circle \n5. Line \n6. Exit \n";
+		std::cout << "Select shape: \n1. 3D Cube \n2. Triangle \n3. Square \n4. Circle \n5. Line \n6. Bezier curve \n7. Exit";
 		switch (Selection(0, 6))
 		{
 			case 1: //3d renderer
@@ -89,19 +89,21 @@ void Menu::Run()
 					case 1:
 					{
 						Initialize(windowSize);
-						square.DrawSquareGradient(square.getColor(), { 0, 119, 255 }, 200);
+						int length = 200; //diagonal length
+						square.DrawSquareGradient(200, square.getColor(), { 0, 119, 255 });
 						break;
 					}
 					case 2:
 					{
 						Initialize(windowSize);
-						square.DrawSquareFilled(square.getColor(), 200);
+						int length = 200; //diagonal length
+						square.DrawSquareFilled(length);
 						break;
 					}
 					case 3:
 					{
 						Initialize(windowSize);
-						square.DrawSquareOutline(square.getColor(), { 100, 100 }, { 300, 300 });
+						square.DrawSquareOutline(square.getColor(), { 100, 100 });
 						break;
 					}
 				}
@@ -124,13 +126,13 @@ void Menu::Run()
 					case 2:
 					{
 						Initialize(windowSize);
-						circle.DrawCircleFilledLoop({ 320,240 }, 100, { 35,255,200 });
+						circle.DrawCircleFilledLoop({ 320,240 }, 100);
 						break;
 					}
 					case 3:
 					{
 						Initialize(windowSize);
-						circle.DrawCircleFilledBres({ 320,240 }, 100, { 35,255,200 });
+						circle.DrawCircleFilledBres({ 320,240 }, 100);
 						break;
 					}
 					case 4:
@@ -140,7 +142,7 @@ void Menu::Run()
 						glm::vec2 pixelPos;
 						for (int i = 100; i > 0; i--)
 						{
-							circle.DrawCircleUnit({ 320, 240 }, i, { 0,255,255 });
+							circle.DrawCircleUnit({ 320, 240 }, i);
 						}
 						break;
 					}
@@ -148,8 +150,8 @@ void Menu::Run()
 					{
 						//showcasing the inaccuracies in unit circle algorithm
 						Initialize(windowSize);
-						circle.DrawCircleOutline({ 200,240 }, 100, { 0,255,0 });
-						circle.DrawCircleUnit({ 440, 240 }, 100, { 255,0,0 });
+						circle.DrawCircleOutline({ 200,240 }, 100);
+						circle.DrawCircleUnit({ 440, 240 }, 100);
 						break;
 					}
 				}
@@ -166,7 +168,16 @@ void Menu::Run()
 				MCG::Cleanup();
 				break;
 			}
-			case 6: //exit
+			case 6: //bezier curve
+			{
+				Initialize(windowSize);
+				Shape2D bezier({ 0, 255, 0 });
+				bezier.DrawBezierCurve({ 200,200 }, { 500, 200 }, { 300, 80 }, { 400, 350 });
+				MCG::ShowAndHold();
+				MCG::Cleanup();
+				break;
+			}
+			case 7: //exit
 			{
 				exitFlag = true;
 				break;

@@ -46,7 +46,18 @@ glm::vec2& Shape2D::getPositionAt(int i)
 	return PositionVec.at(i);
 }
 
-void Shape2D::DrawSquareGradient(glm::vec3 _c1, glm::vec3 _c2, int _len)
+void Shape2D::DrawBezierCurve(glm::vec2 _p1, glm::vec2 _p2, glm::vec2 _c1, glm::vec2 _c2)
+{
+	glm::vec2 pixelPos;
+	for (float t = 0.001f; t <= 1; t += 0.001f)
+	{
+		//linear interpolation with 2 extra parameters
+		pixelPos.x = (pow((1 - t), 3) *_p1.x) + (_c1.x * 3 * t * pow((1 - t), 2)) + (_c2.x * 3 * pow(t, 2) * (1 - t)) + pow(t, 3) * _p2.x;
+		pixelPos.y = (pow((1 - t), 3)*_p1.y) + (_c1.y * 3 * t * pow((1 - t), 2)) + (_c2.y * 3 * pow(t, 2) * (1 - t)) + pow(t, 3) * _p2.y;
+		MCG::DrawPixel(pixelPos, color);
+	}
+}
+void Shape2D::DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2)
 {
 	glm::vec3 result;
 	for (int stepY = 10; stepY < _len; ++stepY)
@@ -61,36 +72,36 @@ void Shape2D::DrawSquareGradient(glm::vec3 _c1, glm::vec3 _c2, int _len)
 		}
 	}
 }
-void Shape2D::DrawSquareFilled(glm::vec3 _color, int _len)
+void Shape2D::DrawSquareFilled(int _len)
 {
 	for (int stepY = 10; stepY < _len; ++stepY)
 	{
 		for (int stepX = 10; stepX < _len; ++stepX)
 		{
-			MCG::DrawPixel({ stepX, stepY }, _color);
+			MCG::DrawPixel({ stepX, stepY }, color);
 		}
 	}
 }
-void Shape2D::DrawSquareOutline(glm::vec3 _color, glm::ivec2 topLeft, glm::ivec2 botRight)
+void Shape2D::DrawSquareOutline(glm::ivec2 topLeft, glm::ivec2 botRight)
 {
-	Line(topLeft, { topLeft.x, botRight.y }, _color);
-	Line({ topLeft.x, botRight.y }, botRight, _color);
-	Line(topLeft, { botRight.x, topLeft.y }, _color);
-	Line({ botRight.x, topLeft.y }, botRight, _color);
+	Line(topLeft, { topLeft.x, botRight.y }, color);
+	Line({ topLeft.x, botRight.y }, botRight, color);
+	Line(topLeft, { botRight.x, topLeft.y }, color);
+	Line({ botRight.x, topLeft.y }, botRight, color);
 }
-void Shape2D::DrawCircleOutline(glm::vec2 _center, int r, glm::vec3 _color)
+void Shape2D::DrawCircleOutline(glm::vec2 _center, int r)
 {
 	int x = 0, y = r; //start from (0,1)
 	int d = 3 - (2 * r); //decision parameter, check reference[7] for initial value proof
 	//draw initial pixels for every octant (basically every 45 degrees)
-	MCG::DrawPixel({ _center.x + x, _center.y + y }, _color);
-	MCG::DrawPixel({ _center.x - x, _center.y + y }, _color);
-	MCG::DrawPixel({ _center.x + x, _center.y - y }, _color);
-	MCG::DrawPixel({ _center.x - x, _center.y - y }, _color);
-	MCG::DrawPixel({ _center.x + y, _center.y + x }, _color);
-	MCG::DrawPixel({ _center.x - y, _center.y + x }, _color);
-	MCG::DrawPixel({ _center.x + y, _center.y - x }, _color);
-	MCG::DrawPixel({ _center.x - y, _center.y - x }, _color);
+	MCG::DrawPixel({ _center.x + x, _center.y + y }, color);
+	MCG::DrawPixel({ _center.x - x, _center.y + y }, color);
+	MCG::DrawPixel({ _center.x + x, _center.y - y }, color);
+	MCG::DrawPixel({ _center.x - x, _center.y - y }, color);
+	MCG::DrawPixel({ _center.x + y, _center.y + x }, color);
+	MCG::DrawPixel({ _center.x - y, _center.y + x }, color);
+	MCG::DrawPixel({ _center.x + y, _center.y - x }, color);
+	MCG::DrawPixel({ _center.x - y, _center.y - x }, color);
 	while (x <= y) //while x less or equal than y, meaning until we reach the 45degree coordinate after which x>y
 	{
 		++x; //increment x
@@ -102,29 +113,29 @@ void Shape2D::DrawCircleOutline(glm::vec2 _center, int r, glm::vec3 _color)
 			y--; //decrement x
 		}
 		//draw pixel for every octant
-		MCG::DrawPixel({ _center.x + x, _center.y + y }, _color);
-		MCG::DrawPixel({ _center.x - x, _center.y + y }, _color);
-		MCG::DrawPixel({ _center.x + x, _center.y - y }, _color);
-		MCG::DrawPixel({ _center.x - x, _center.y - y }, _color);
-		MCG::DrawPixel({ _center.x + y, _center.y + x }, _color);
-		MCG::DrawPixel({ _center.x - y, _center.y + x }, _color);
-		MCG::DrawPixel({ _center.x + y, _center.y - x }, _color);
-		MCG::DrawPixel({ _center.x - y, _center.y - x }, _color);
+		MCG::DrawPixel({ _center.x + x, _center.y + y }, color);
+		MCG::DrawPixel({ _center.x - x, _center.y + y }, color);
+		MCG::DrawPixel({ _center.x + x, _center.y - y }, color);
+		MCG::DrawPixel({ _center.x - x, _center.y - y }, color);
+		MCG::DrawPixel({ _center.x + y, _center.y + x }, color);
+		MCG::DrawPixel({ _center.x - y, _center.y + x }, color);
+		MCG::DrawPixel({ _center.x + y, _center.y - x }, color);
+		MCG::DrawPixel({ _center.x - y, _center.y - x }, color);
 	}
 }
-void Shape2D::DrawCircleFilledBres(glm::vec2 _center, int r, glm::vec3 _color)
+void Shape2D::DrawCircleFilledBres(glm::vec2 _center, int r)
 {
 	int x = 0, y = r; //start from (0,1)
 	int d = 3 - (2 * r); //decision parameter, check reference[7] for initial value proof
 	//draw initial pixels for every octant (basically every 45 degrees)
-	Line(_center, { _center.x + x, _center.y + y }, _color);
-	Line(_center, { _center.x - x, _center.y + y }, _color);
-	Line(_center, { _center.x + x, _center.y - y }, _color);
-	Line(_center, { _center.x - x, _center.y - y }, _color);
-	Line(_center, { _center.x + y, _center.y + x }, _color);
-	Line(_center, { _center.x - y, _center.y + x }, _color);
-	Line(_center, { _center.x + y, _center.y - x }, _color);
-	Line(_center, { _center.x - y, _center.y - x }, _color);
+	Line(_center, { _center.x + x, _center.y + y }, color);
+	Line(_center, { _center.x - x, _center.y + y }, color);
+	Line(_center, { _center.x + x, _center.y - y }, color);
+	Line(_center, { _center.x - x, _center.y - y }, color);
+	Line(_center, { _center.x + y, _center.y + x }, color);
+	Line(_center, { _center.x - y, _center.y + x }, color);
+	Line(_center, { _center.x + y, _center.y - x }, color);
+	Line(_center, { _center.x - y, _center.y - x }, color);
 	while (x <= y) //while x less or equal than y, meaning until we reach the 45degree coordinate after which x>y
 	{
 		++x; //increment x
@@ -136,21 +147,21 @@ void Shape2D::DrawCircleFilledBres(glm::vec2 _center, int r, glm::vec3 _color)
 			y--; //decrement x
 		}
 		//draw pixel for every octant
-		Line(_center, { _center.x + x, _center.y + y }, _color);
-		Line(_center, { _center.x - x, _center.y + y }, _color);
-		Line(_center, { _center.x + x, _center.y - y }, _color);
-		Line(_center, { _center.x - x, _center.y - y }, _color);
-		Line(_center, { _center.x + y, _center.y + x }, _color);
-		Line(_center, { _center.x - y, _center.y + x }, _color);
-		Line(_center, { _center.x + y, _center.y - x }, _color);
-		Line(_center, { _center.x - y, _center.y - x }, _color);
+		Line(_center, { _center.x + x, _center.y + y }, color);
+		Line(_center, { _center.x - x, _center.y + y }, color);
+		Line(_center, { _center.x + x, _center.y - y }, color);
+		Line(_center, { _center.x - x, _center.y - y }, color);
+		Line(_center, { _center.x + y, _center.y + x }, color);
+		Line(_center, { _center.x - y, _center.y + x }, color);
+		Line(_center, { _center.x + y, _center.y - x }, color);
+		Line(_center, { _center.x - y, _center.y - x }, color);
 	}
 }
-void Shape2D::DrawCircleFilledLoop(glm::vec2 _center, int r, glm::vec3 _color)
+void Shape2D::DrawCircleFilledLoop(glm::vec2 _center, int r)
 {
 	for (;r > 0; r--)
 	{
-		DrawCircleOutline(_center, r, _color);
+		DrawCircleOutline(_center, r);
 	}
 }
 void Shape2D::DrawCircleGradient(glm::vec2 _center, int r, glm::vec3 _c1, glm::vec3 _c2)
@@ -162,16 +173,17 @@ void Shape2D::DrawCircleGradient(glm::vec2 _center, int r, glm::vec3 _c1, glm::v
 		result.x = (_c2.x - _c1.x) * stepX / r + _c1.x; 
 		result.y = (_c2.y - _c1.y) * stepX / r + _c1.y;
 		result.z = (_c2.z - _c1.z) * stepX / r + _c1.z;
-		DrawCircleOutline(_center, stepX, result);
+		setColor(result);
+		DrawCircleOutline(_center, stepX);
 	}
 }
-void Shape2D::DrawCircleUnit(glm::vec2 _center, int _r, glm::vec3 _color)
+void Shape2D::DrawCircleUnit(glm::vec2 _center, int _r)
 {
 	glm::vec2 pixel;
 	for (float rad = 0.0f; rad < 2 * PI; rad += 0.01f)
 	{
 		pixel.x = _center.x + (_r * (cosf(rad)));
 		pixel.y = _center.y + (_r * (sinf(rad)));
-		MCG::DrawPixel(pixel, _color);
+		MCG::DrawPixel(pixel, color);
 	}
 }
