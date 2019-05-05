@@ -82,7 +82,7 @@ void Menu::Run()
 			}
 			case 3: //square
 			{
-				Shape2D square({ 255,0,65 });
+				Shape2D square({ 0,255,65 });
 				std::cout << "Select option: \n1. Gradient filled \n2. Monotone filled \n3. Outline \n";
 				switch (Selection(0, 3))
 				{
@@ -97,13 +97,13 @@ void Menu::Run()
 					{
 						Initialize(windowSize);
 						int length = 200; //diagonal length
-						square.DrawSquareFilled(length);
+						square.DrawSquareFilled(length, { 100,100 });
 						break;
 					}
 					case 3:
 					{
 						Initialize(windowSize);
-						square.DrawSquareOutline(square.getColor(), { 100, 100 });
+						square.DrawSquareOutline({ 100, 100 }, { 300, 300 });
 						break;
 					}
 				}

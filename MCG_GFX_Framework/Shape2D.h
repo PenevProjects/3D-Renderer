@@ -29,7 +29,7 @@ public:
 	void DrawBezierCurve(glm::vec2 _p1, glm::vec2 _p2, glm::vec2 _c1, glm::vec2 _c2);
 
 	void DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2);
-	void DrawSquareFilled(int _len);
+	void DrawSquareFilled(int _len, glm::ivec2 topLeft);
 	void DrawSquareOutline(glm::ivec2 topLeft, glm::ivec2 botRight);
 
 	void DrawCircleUnit(glm::vec2 _center, int _r); //unit circle drawing algorithm, inaccurate, slow and wastes a lot of resources(cos and sin calculations)
