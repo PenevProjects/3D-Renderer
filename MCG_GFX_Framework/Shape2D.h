@@ -28,9 +28,10 @@ public:
 
 	void DrawBezierCurve(glm::vec2 _p1, glm::vec2 _p2, glm::vec2 _c1, glm::vec2 _c2);
 
-	void DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2);
-	void DrawSquareFilled(int _len);
-	void DrawSquareOutline(glm::ivec2 topLeft, glm::ivec2 botRight);
+	void DrawSquareGradient(glm::ivec2 topLeft, int _len, glm::vec3 _c1, glm::vec3 _c2);
+	/*void DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2);*/
+	void DrawSquareFilled(glm::ivec2 topLeft, int _len);
+	void DrawSquareOutline(glm::ivec2 topLeft, int _len);
 
 	void DrawCircleUnit(glm::vec2 _center, int _r); //unit circle drawing algorithm, inaccurate, slow and wastes a lot of resources(cos and sin calculations)
 	void DrawCircleOutline(glm::vec2 _center, int r); //bresenham midpoint circle drawing algorithm, faster and more accurate

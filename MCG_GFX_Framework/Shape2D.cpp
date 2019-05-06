@@ -57,7 +57,7 @@ void Shape2D::DrawBezierCurve(glm::vec2 _p1, glm::vec2 _p2, glm::vec2 _c1, glm::
 		MCG::DrawPixel(pixelPos, color);
 	}
 }
-void Shape2D::DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2)
+void Shape2D::DrawSquareGradient(glm::ivec2 topLeft, int _len, glm::vec3 _c1, glm::vec3 _c2)
 {
 	glm::vec3 result;
 	for (int stepY = 10; stepY < _len; ++stepY)
@@ -68,22 +68,23 @@ void Shape2D::DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2)
 			result.x = (_c2.x - _c1.x) * stepX / _len + _c1.x;
 			result.y = (_c2.y - _c1.y) * stepX / _len + _c1.y;
 			result.z = (_c2.z - _c1.z) * stepX / _len + _c1.z;
-			MCG::DrawPixel({ stepX, stepY }, result);
+			MCG::DrawPixel({ stepX + topLeft.x, stepY + topLeft.y }, result);
 		}
 	}
 }
-void Shape2D::DrawSquareFilled(int _len)
+void Shape2D::DrawSquareFilled(glm::ivec2 topLeft,int _len)
 {
-	for (int stepY = 10; stepY < _len; ++stepY)
+	for (int stepY = topLeft.y; stepY < topLeft.y + _len; ++stepY)
 	{
-		for (int stepX = 10; stepX < _len; ++stepX)
+		for (int stepX = topLeft.x; stepX < topLeft.x + _len; ++stepX)
 		{
 			MCG::DrawPixel({ stepX, stepY }, color);
 		}
 	}
 }
-void Shape2D::DrawSquareOutline(glm::ivec2 topLeft, glm::ivec2 botRight)
+void Shape2D::DrawSquareOutline(glm::ivec2 topLeft, int _len)
 {
+	glm::ivec2 botRight = topLeft + _len;
 	Line(topLeft, { topLeft.x, botRight.y }, color);
 	Line({ topLeft.x, botRight.y }, botRight, color);
 	Line(topLeft, { botRight.x, topLeft.y }, color);

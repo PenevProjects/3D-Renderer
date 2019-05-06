@@ -94,26 +94,26 @@ void Menu::Run()
 			{
 				Shape2D square({ 255,0,65 });
 				std::cout << "Select option: \n1. Gradient filled \n2. Monotone filled \n3. Outline \n";
+				glm::ivec2 start{ 150,150 };
+				int length = 200;
 				switch (Selection(0, 3))
 				{
 					case 1:
 					{
 						Initialize(windowSize);
-						int length = 200; //diagonal length
-						square.DrawSquareGradient(200, square.getColor(), { 0, 119, 255 });
+						square.DrawSquareGradient(start, length, square.getColor(), { 0, 119, 255 });
 						break;
 					}
 					case 2:
 					{
 						Initialize(windowSize);
-						int length = 200; //diagonal length
-						square.DrawSquareFilled(length);
+						square.DrawSquareFilled(start, length);
 						break;
 					}
 					case 3:
 					{
 						Initialize(windowSize);
-						square.DrawSquareOutline(square.getColor(), { 100, 100 });
+						square.DrawSquareOutline(start, length);
 						break;
 					}
 				}
