@@ -18,13 +18,14 @@ void Menu::Run()
 	bool exitFlag = false;
 	while (exitFlag == false)
 	{
-		std::cout << "Select shape: \n1. 3D Shape \n2. Triangle \n3. Square \n4. Circle \n5. Line \n6. Bezier curve \n7. Exit";
+		std::cout << "Select shape: \n1. 3D Cube \n2. 3D Sphere\n3. Triangle \n4. Square \n5. Circle \n6. Line \n7. Bezier curve \n8. Exit";
 		switch (Selection(0, 6))
 		{
 			case 1: //3d renderer
 			{
+				glm::vec3 color{ 0,212,255 };
 				Initialize(windowSize);
-				Shape3D shape({ 0,212,255 });
+				Shape3D cube3D(color);
 				std::vector<triangle> cubeMesh = {
 					//mesh of a cube, triangles always drawn in clockwise direction to make sure normals point outwards
 					//south
@@ -52,22 +53,28 @@ void Menu::Run()
 					{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 0.0f, 0.0f)},
 				};
 
-				shape.setMesh(cubeMesh);
-
-				//uncomment this for a Sphere mesh!
-				//you can also import your own objects, as long as they are .obj and with triangulated faces.
-				//please note that this renderer has no Z-buffer so more complex objects will not render properly!
-				//I used Blender export with only triangulated faces selected as an option.
-
-				//shape.setMeshFromFile("Sphere.txt"); 
-
-
-				//shape.setModelMatrix();  //use this if you want to set a different model matrix
-				Render(windowSize, shape);
+				cube3D.setMesh(cubeMesh); //here we define the mesh manually on line 29
+				//cube3D.setMeshFromFile("Cube.txt"); //uncomment this to define the mesh through a file
+				Render(windowSize, cube3D);
 				MCG::Cleanup();
 				break;
 			}
-			case 2: //triangle
+			case 2:
+			{
+				glm::vec3 color{ 43,140,255 };
+				Initialize(windowSize);
+				Shape3D sphere3D(color);
+				sphere3D.setMeshFromFile("Sphere.txt");
+				//you can also import your own objects, as long as they are .obj and with triangulated faces.
+				//please note that this renderer has no Z-buffer so more complex objects will not render properly!
+				//I used Blender export with only triangulated faces selected as an option.
+				//shape.setModelMatrix();  //use this if you want to set a different model matrix
+				Render(windowSize, sphere3D);
+				MCG::Cleanup();
+				break;
+
+			}
+			case 3: //triangle
 			{
 				TriangleClass tri;
 				std::cout << "Select option: \n1. Filled \n2. Outline \n";
@@ -90,7 +97,7 @@ void Menu::Run()
 				MCG::Cleanup();
 				break;
 			}
-			case 3: //square
+			case 4: //square
 			{
 				Shape2D square({ 255,0,65 });
 				std::cout << "Select option: \n1. Gradient filled \n2. Monotone filled \n3. Outline \n";
@@ -121,7 +128,7 @@ void Menu::Run()
 				MCG::Cleanup();
 				break;
 			}
-			case 4: //circle
+			case 5: //circle
 			{
 				Shape2D circle({ 255,0,65 });
 				std::cout << "Select option: \n1. Gradient filled (with 2.'s method) \n2. Monotone filled (bresenham, outline circles loop) \n3. Monotone filled (bresenham, lines from origin to endpoint) \n4. Monotone filled (unit circle, outline circles loop) \n5. Outline (bresenham mid-point left, unit circle right) ";
@@ -169,7 +176,7 @@ void Menu::Run()
 				MCG::Cleanup();
 				break;
 			}
-			case 5: //line
+			case 6: //line
 			{
 				TriangleClass oneline; //ha!
 				Initialize(windowSize);
@@ -178,7 +185,7 @@ void Menu::Run()
 				MCG::Cleanup();
 				break;
 			}
-			case 6: //bezier curve
+			case 7: //bezier curve
 			{
 				Initialize(windowSize);
 				Shape2D bezier({ 0, 255, 0 });
@@ -187,7 +194,7 @@ void Menu::Run()
 				MCG::Cleanup();
 				break;
 			}
-			case 7: //exit
+			case 8: //exit
 			{
 				exitFlag = true;
 				break;
