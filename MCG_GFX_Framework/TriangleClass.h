@@ -1,5 +1,8 @@
 #include "MCG_GFX_Lib.h"
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <vector>
 #pragma once
 
 //structure of triangle

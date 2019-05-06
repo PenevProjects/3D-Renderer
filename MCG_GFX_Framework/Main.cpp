@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-/*References:
+/* References:
 [1]https://csustan.csustan.edu/~tom/Lecture-Notes/Graphics/Bresenham-Line/Bresenham-Line.pdf
 [2]http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html#algo3
 [3]https://wiki.planetchili.net/index.php/3D_Fundamentals_Tutorial_5
@@ -28,3 +28,4 @@ int main(int argc, char *argv[])
 [8]https://stackoverflow.com/questions/13488957/interpolate-from-one-color-to-another
 [9]https://en.wikipedia.org/wiki/Unit_circle
 */
+

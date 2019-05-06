@@ -72,12 +72,11 @@ void Shape2D::DrawSquareGradient(int _len, glm::vec3 _c1, glm::vec3 _c2)
 		}
 	}
 }
-void Shape2D::DrawSquareFilled(int _len, glm::ivec2 topLeft)
+void Shape2D::DrawSquareFilled(int _len)
 {
-	glm::ivec2 temp = topLeft;
-	for (int stepX = topLeft.x; stepX < _len+temp.x; ++stepX)
+	for (int stepY = 10; stepY < _len; ++stepY)
 	{
-		for (int stepY = topLeft.y ; stepY < _len+temp.y; ++stepY)
+		for (int stepX = 10; stepX < _len; ++stepX)
 		{
 			MCG::DrawPixel({ stepX, stepY }, color);
 		}

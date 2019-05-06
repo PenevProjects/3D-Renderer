@@ -32,6 +32,35 @@ std::vector<triangle> Shape3D::getMesh() const
 {
 	return mesh;
 }
+void Shape3D::setMeshFromFile(std::string sFilename)
+{
+	std::ifstream file(sFilename);
+
+	std::vector<glm::vec3> vertices;
+
+	while (!file.eof())
+	{
+		std::string line;
+		std::getline(file, line, '\n');
+
+		std::stringstream stream;
+		stream << line;
+
+		char first;
+		if (line[0] == 'v')
+		{
+			glm::vec3 v;
+			stream >> first >> v.x >> v.y >> v.z;
+			vertices.push_back(v);
+		}
+		if (line[0] == 'f')
+		{
+			int f[3];
+			stream >> first >> f[0] >> f[1] >> f[2];
+			mesh.push_back({ vertices[f[0] - 1], vertices[f[1] - 1], vertices[f[2] - 1] });
+		}
+	}
+}
 void Shape3D::setMesh(std::vector<triangle> _mesh)
 {
 	mesh = _mesh;

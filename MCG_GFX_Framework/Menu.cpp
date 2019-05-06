@@ -18,13 +18,13 @@ void Menu::Run()
 	bool exitFlag = false;
 	while (exitFlag == false)
 	{
-		std::cout << "Select shape: \n1. 3D Cube \n2. Triangle \n3. Square \n4. Circle \n5. Line \n6. Bezier curve \n7. Exit";
+		std::cout << "Select shape: \n1. 3D Shape \n2. Triangle \n3. Square \n4. Circle \n5. Line \n6. Bezier curve \n7. Exit";
 		switch (Selection(0, 6))
 		{
 			case 1: //3d renderer
 			{
 				Initialize(windowSize);
-				Shape3D cube3D({ 0,212,255 });
+				Shape3D shape({ 0,212,255 });
 				std::vector<triangle> cubeMesh = {
 					//mesh of a cube, triangles always drawn in clockwise direction to make sure normals point outwards
 					//south
@@ -51,9 +51,19 @@ void Menu::Run()
 					{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec3(0.0f, 0.0f, 0.0f)},
 					{glm::vec3(1.0f, 0.0f, 1.0f),   glm::vec3(0.0f, 0.0f, 0.0f),   glm::vec3(1.0f, 0.0f, 0.0f)},
 				};
-				cube3D.setMesh(cubeMesh);
-				//cube3D.setModelMatrix();  //use this if you want to set a different model matrix
-				Render(windowSize, cube3D);
+
+				shape.setMesh(cubeMesh);
+
+				//uncomment this for a Sphere mesh!
+				//you can also import your own objects, as long as they are .obj and with triangulated faces.
+				//please note that this renderer has no Z-buffer so more complex objects will not render properly!
+				//I used Blender export with only triangulated faces selected as an option.
+
+				//shape.setMeshFromFile("Sphere.txt"); 
+
+
+				//shape.setModelMatrix();  //use this if you want to set a different model matrix
+				Render(windowSize, shape);
 				MCG::Cleanup();
 				break;
 			}
@@ -82,7 +92,7 @@ void Menu::Run()
 			}
 			case 3: //square
 			{
-				Shape2D square({ 0,255,65 });
+				Shape2D square({ 255,0,65 });
 				std::cout << "Select option: \n1. Gradient filled \n2. Monotone filled \n3. Outline \n";
 				switch (Selection(0, 3))
 				{
@@ -97,13 +107,13 @@ void Menu::Run()
 					{
 						Initialize(windowSize);
 						int length = 200; //diagonal length
-						square.DrawSquareFilled(length, { 100,100 });
+						square.DrawSquareFilled(length);
 						break;
 					}
 					case 3:
 					{
 						Initialize(windowSize);
-						square.DrawSquareOutline({ 100, 100 }, { 300, 300 });
+						square.DrawSquareOutline(square.getColor(), { 100, 100 });
 						break;
 					}
 				}

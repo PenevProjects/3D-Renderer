@@ -1,6 +1,9 @@
 #include <vector>
 #include "MCG_GFX_Lib.h"
 #include "TriangleClass.h"
+#include <string>
+#include <fstream>
+#include <sstream>
 
 #pragma once
 
@@ -26,7 +29,8 @@ public:
 	Shape3D(const Shape3D& _copy);
 	~Shape3D();
 	std::vector<triangle> getMesh() const;
-	void setMesh(std::vector<triangle> _mesh);
+	void Shape3D::setMeshFromFile(std::string sFilename);
+	void Shape3D::setMesh(std::vector<triangle> _mesh);
 
 	glm::vec3 getColor() const;
 	void setColor(glm::vec3);
