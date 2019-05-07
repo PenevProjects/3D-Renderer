@@ -19,7 +19,7 @@ void Menu::Run()
 	while (exitFlag == false)
 	{
 		std::cout << "Select shape: \n1. 3D Cube \n2. 3D Sphere\n3. Triangle \n4. Square \n5. Circle \n6. Line \n7. Bezier curve \n8. Exit";
-		switch (Selection(0, 6))
+		switch (Selection(0, 8))
 		{
 			case 1: //3d renderer
 			{
