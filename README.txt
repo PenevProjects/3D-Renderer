@@ -8,7 +8,7 @@
 4. Close the renderer.
 5. Go to 2.
 
-// PROBLEM BUILDING SOLUTION
+// PROBLEMS when BUILDING THE SOLUTION
 If there are problems building the solution, you can:
 1. Make sure the project settings have the correct includes; or
 2. Copy the .cpp and .h files into a new MCG Framework project and run it; or
